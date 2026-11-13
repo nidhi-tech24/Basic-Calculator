@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Smart Calculator</title>
+  <style>
+    body {
+      font-family: "Poppins", sans-serif;
+      background: linear-gradient(135deg, #74ebd5, #acb6e5);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      margin: 0;
+    }
+
+    h2 {
+      color: #333;
+      margin-bottom: 20px;
+    }
+
+    .calculator {
+      background: white;
+      padding: 20px;
+      border-radius: 15px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 320px;
+    }
+
+    input {
+      width: 120px;
+      padding: 10px;
+      margin: 5px;
+      border: 2px solid #ccc;
+      border-radius: 8px;
+      font-size: 16px;
+      text-align: center;
+    }
+
+    button {
+      padding: 10px 15px;
+      margin: 5px;
+      border: none;
+      border-radius: 8px;
+      background-color: #4a90e2;
+      color: white;
+      font-size: 15px;
+      cursor: pointer;
+      transition: 0.3s;
+    }
+
+    button:hover {
+      background-color: #357abd;
+      transform: scale(1.05);
+    }
+
+    #result {
+      display: block;
+      font-size: 22px;
+      margin-top: 20px;
+      color: #111;
+      font-weight: bold;
+    }
+
+    .btn-group {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="calculator">
+    <h2>Basic Calculator</h2>
+
+    <input type="number" id="num1" placeholder="First number">
+    <input type="number" id="num2" placeholder="Second number">
+    <br><br>
+
+    <div class="btn-group">
+      <button onclick="showResult(add)">+</button>
+      <button onclick="showResult(subtract)">−</button>
+      <button onclick="showResult(multiply)">×</button>
+      <button onclick="showResult(divide)">÷</button>
+      <button onclick="showResult(modulus)">%</button>
+      <button onclick="showResult(percentage)">% of</button>
+      <button onclick="showResult(squareRoot)">√</button>
+      <button onclick="showResult(cubeRoot)">∛</button>
+      <button onclick="showResult(square)">x²</button>
+      <button onclick="showResult(cube)">x³</button>
+      <button onclick="showResult(factorial)">n!</button>
+      <button onclick="showResult(power)">xʸ</button>
+      <button onclick="clearResult()">Clear</button>
+    </div>
+
+    <span id="result">Result: 0</span>
+  </div>
+
+  <script>
+    //  Basic operations
+    function add(a, b) { return a + b; }
+    function subtract(a, b) { return a - b; }
+    function multiply(a, b) { return a * b; }
+    function divide(a, b) { return b === 0 ? "🙅🏻‍♀️ Divide by 0" : a / b; }
+    function modulus(a, b) { return a % b; }
+    function percentage(a, b) { return (a / b) * 100; }
+
+    //  Advanced operations
+    function squareRoot(a) { return a < 0 ? "❌ Negative!" : Math.sqrt(a); }
+    function cubeRoot(a) { return Math.cbrt(a); }
+    function square(a) { return a * a; }
+    function cube(a) { return a * a * a; }
+    function power(a, b) { return Math.pow(a, b); }
+
+    // Factorial
+    function factorial(a) {
+      if (a < 0) return "❌ Invalid!";
+      if (a === 0 || a === 1) return 1;
+      let result = 1;
+      for (let i = 1; i <= a; i++) result *= i;
+      return result;
+    }
+
+    //  Display result
+    function showResult(operation) {
+      const num1 = parseFloat(document.getElementById("num1").value);
+      const num2 = parseFloat(document.getElementById("num2").value);
+      let result;
+
+      // For single-number operations
+      if ([squareRoot, cubeRoot, square, cube, factorial].includes(operation)) {
+        if (isNaN(num1)) return showError();
+        result = operation(num1);
+      } else {
+        if (isNaN(num1) || isNaN(num2)) return showError();
+        result = operation(num1, num2);
+      }
+
+      document.getElementById("result").innerText = "Result: " + result;
+    }
+
+    //  Clear function
+    function clearResult() {
+      document.getElementById("num1").value = "";
+      document.getElementById("num2").value = "";
+      document.getElementById("result").innerText = "Result: 0";
+    }
+
+    //  Error display
+    function showError() {
+      document.getElementById("result").innerText = "⚠️ Please enter valid numbers!";
+    }
+  </script>
+</body>
+</html>
