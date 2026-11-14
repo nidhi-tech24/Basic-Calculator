@@ -1,0 +1,139 @@
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background: linear-gradient(135deg, #74ebd5, #acb6e5);
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.calculator {
+    background: white;
+    width: 100%;
+    max-width: 380px;
+    padding: 30px 25px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    color: #333;
+    font-size: 26px;
+}
+
+.subtitle {
+    color: #777;
+    font-size: 13px;
+    margin: 10px 0 25px;
+}
+
+.input-group {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+input {
+    width: 100%;
+    padding: 13px;
+    border: 2px solid #ddd;
+    border-radius: 10px;
+    font-size: 16px;
+    outline: none;
+}
+
+input:focus {
+    border-color: #4a90e2;
+}
+
+.button-group {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button {
+    border: none;
+    padding: 13px 5px;
+    border-radius: 10px;
+    background: #4a90e2;
+    color: white;
+    font-size: 17px;
+    cursor: pointer;
+    transition: 0.2s;
+}
+
+button:hover {
+    background: #286bb5;
+    transform: translateY(-2px);
+}
+
+button:focus-visible {
+    outline: 3px solid #222;
+    outline-offset: 3px;
+}
+
+.result-box {
+    background: #f1f5ff;
+    padding: 18px;
+    border-radius: 12px;
+    margin-top: 22px;
+    overflow-wrap: anywhere;
+}
+
+.result-box p {
+    color: #777;
+    font-size: 12px;
+    letter-spacing: 1px;
+}
+
+.result-box h2 {
+    color: #333;
+    margin-top: 8px;
+    font-size: 25px;
+}
+
+.clear-btn {
+    width: 100%;
+    margin-top: 15px;
+    background: #e74c3c;
+}
+
+.clear-btn:hover {
+    background: #c0392b;
+}
+
+.hint {
+    font-size: 11px;
+    color: #888;
+    margin-top: 15px;
+}
+
+@media (max-width: 400px) {
+    .calculator {
+        padding: 22px 16px;
+    }
+
+    h1 {
+        font-size: 22px;
+    }
+
+    .button-group {
+        gap: 7px;
+    }
+
+    button {
+        padding: 12px 3px;
+        font-size: 15px;
+    }
+}
